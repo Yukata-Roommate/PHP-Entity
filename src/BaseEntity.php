@@ -9,36 +9,65 @@ namespace YukataRm\Entity;
  */
 abstract class BaseEntity
 {
-    /*----------------------------------------*
-     * Magic Method
-     *----------------------------------------*/
+    /**
+     * data
+     * 
+     * @var array|object|null
+     */
+    protected array|object|null $_data = null;
 
     /**
-     * get property magic method
+     * set data
+     * 
+     * @param array|object $data
+     * @return void
+     */
+    protected function setData(array|object $data): void
+    {
+        $this->_data = $data;
+    }
+
+    /**
+     * get property
      * 
      * @param string $name
      * @return mixed
      */
-    abstract public function __get($name): mixed;
+    abstract public function get(string $name): mixed;
 
     /**
-     * set property magic method
+     * set property
      * 
      * @param string $name
      * @param mixed $value
      * @return void
      */
-    abstract public function __set($name, $value): void;
+    abstract public function set(string $name, mixed $value): void;
 
     /**
-     * isset property magic method
+     * isset data
      * 
      * @param string $name
      * @return bool
      */
-    public function __isset($name): bool
+    abstract public function isset(string $name): bool;
+
+    /**
+     * unset data
+     * 
+     * @param string $name
+     * @return void
+     */
+    abstract public function unset(string $name): void;
+
+    /**
+     * flush data
+     * 
+     * @return void
+     */
+    public function flush(): void
     {
-        return isset($this->$name);
+        $this->_data = null;
     }
 
     /*----------------------------------------*
@@ -113,17 +142,6 @@ abstract class BaseEntity
     /*----------------------------------------*
      * Property
      *----------------------------------------*/
-
-    /**
-     * get property
-     * 
-     * @param string $name
-     * @return mixed
-     */
-    public function get(string $name): mixed
-    {
-        return isset($this->$name) ? $this->$name : null;
-    }
 
     /**
      * get property as nullable string

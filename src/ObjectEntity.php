@@ -19,52 +19,53 @@ class ObjectEntity extends BaseEntity
     protected object|null $_data = null;
 
     /**
-     * set data
-     * 
-     * @param object $data
-     * @return void
-     */
-    public function set(object $data): void
-    {
-        $this->_data = $data;
-    }
-
-    /**
-     * flush data
-     * 
-     * @return void
-     */
-    public function flush(): void
-    {
-        $this->_data = null;
-    }
-
-    /*----------------------------------------*
-     * Magic Method
-     *----------------------------------------*/
-
-    /**
-     * get property magic method
+     * get property
      * 
      * @param string $name
      * @return mixed
      */
-    public function __get($name): mixed
+    public function get(string $name): mixed
     {
         return !is_null($this->_data) && isset($this->_data->{$name}) ? $this->_data->{$name} : null;
     }
 
     /**
-     * set property magic method
+     * set property
      * 
      * @param string $name
      * @param mixed $value
      * @return void
      */
-    public function __set($name, $value): void
+    public function set(string $name, mixed $value): void
     {
-        if (is_null($this->_data)) $this->set(new \stdClass);
+        if (is_null($this->_data)) $this->setData(new \stdClass);
 
         $this->_data->{$name} = $value;
+    }
+
+    /**
+     * isset data
+     * 
+     * @param string $name
+     * @return bool
+     */
+    public function isset(string $name): bool
+    {
+        return !is_null($this->_data) && isset($this->_data->{$name});
+    }
+
+    /**
+     * unset data
+     * 
+     * @param string $name
+     * @return void
+     */
+    public function unset(string $name): void
+    {
+        if (is_null($this->_data)) return;
+
+        if (!$this->isset($name)) return;
+
+        unset($this->_data->{$name});
     }
 }
