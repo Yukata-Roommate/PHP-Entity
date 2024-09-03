@@ -12,13 +12,6 @@ use YukataRm\Entity\BaseEntity;
 class ArrayEntity extends BaseEntity
 {
     /**
-     * data
-     * 
-     * @var array|null
-     */
-    protected array|null $_data = null;
-
-    /**
      * get property
      * 
      * @param string $name
@@ -26,7 +19,7 @@ class ArrayEntity extends BaseEntity
      */
     public function get(string $name): mixed
     {
-        return !is_null($this->_data) && isset($this->_data[$name]) ? $this->_data[$name] : null;
+        return is_array($this->_data) && isset($this->_data[$name]) ? $this->_data[$name] : null;
     }
 
     /**
@@ -38,7 +31,7 @@ class ArrayEntity extends BaseEntity
      */
     public function set(string $name, mixed $value): void
     {
-        if (is_null($this->_data)) $this->setData([]);
+        if (!is_array($this->_data)) $this->setData([]);
 
         $this->_data[$name] = $value;
     }
@@ -51,7 +44,7 @@ class ArrayEntity extends BaseEntity
      */
     public function isset(string $name): bool
     {
-        return !is_null($this->_data) && isset($this->_data[$name]);
+        return is_array($this->_data) && isset($this->_data[$name]);
     }
 
     /**
@@ -62,8 +55,6 @@ class ArrayEntity extends BaseEntity
      */
     public function unset(string $name): void
     {
-        if (is_null($this->_data)) return;
-
         if (!$this->isset($name)) return;
 
         unset($this->_data[$name]);
