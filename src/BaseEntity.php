@@ -42,7 +42,76 @@ abstract class BaseEntity
     }
 
     /*----------------------------------------*
-     * Property Getter
+     * Method
+     *----------------------------------------*/
+
+    /**
+     * get all properties
+     * 
+     * @return array<string, mixed>
+     */
+    public function all(): array
+    {
+        $reflector = new \ReflectionClass($this);
+        $reflectorClassName = $reflector->getName();
+
+        $properties = $reflector->getProperties(\ReflectionProperty::IS_PUBLIC);
+
+        foreach ($properties as $property) {
+            if ($property->class !== $reflectorClassName) continue;
+            if ($property->isInitialized($this) === false) continue;
+            if ($property->isStatic()) continue;
+
+            $name = $property->getName();
+
+            $all[$name] = $this->{$name};
+        }
+
+        return $all;
+    }
+
+    /**
+     * to array
+     * 
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        return $this->all();
+    }
+
+    /**
+     * get only properties with keys
+     * 
+     * @param string|array<string> ...$keys
+     * @return array<string, mixed>
+     */
+    public function only(string|array ...$keys): array
+    {
+        $keys = $this->mergeKeys(...$keys);
+
+        $all = $this->all();
+
+        return array_filter($all, fn($key) => in_array($key, $keys), ARRAY_FILTER_USE_KEY);
+    }
+
+    /**
+     * get except properties with keys
+     * 
+     * @param string|array<string> ...$keys
+     * @return array<string, mixed>
+     */
+    public function except(string|array ...$keys): array
+    {
+        $keys = $this->mergeKeys(...$keys);
+
+        $all = $this->all();
+
+        return array_filter($all, fn($key) => !in_array($key, $keys), ARRAY_FILTER_USE_KEY);
+    }
+
+    /*----------------------------------------*
+     * Property
      *----------------------------------------*/
 
     /**
@@ -271,5 +340,26 @@ abstract class BaseEntity
     protected function throwRequiredException(string $key): void
     {
         throw new \RuntimeException("{$key} is required.");
+    }
+
+    /**
+     * merge keys
+     * 
+     * @param string|array<string> ...$args
+     * @return array<string>
+     */
+    protected function mergeKeys(string|array ...$args): array
+    {
+        $keys = [];
+
+        foreach ($args as $key) {
+            if (is_array($key)) {
+                $keys = array_merge($keys, $key);
+            } else {
+                $keys[] = $key;
+            }
+        }
+
+        return $keys;
     }
 }
