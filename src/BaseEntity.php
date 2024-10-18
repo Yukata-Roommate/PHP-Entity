@@ -330,7 +330,7 @@ abstract class BaseEntity
 
         if (!enum_exists($enumClass)) return null;
 
-        return $property instanceof $enumClass ? $property : new $enumClass($property);
+        return $property instanceof $enumClass ? $property : $enumClass::tryFrom($property);
     }
 
     /**
