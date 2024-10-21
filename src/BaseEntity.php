@@ -4,21 +4,21 @@ namespace YukataRm\Entity;
 
 /**
  * Base Entity
- * 
+ *
  * @package YukataRm\Entity
  */
 abstract class BaseEntity
 {
     /**
      * data
-     * 
+     *
      * @var array|object|null
      */
     protected array|object|null $_data = null;
 
     /**
      * set data
-     * 
+     *
      * @param array|object $data
      * @return void
      */
@@ -29,7 +29,7 @@ abstract class BaseEntity
 
     /**
      * get property
-     * 
+     *
      * @param string $name
      * @return mixed
      */
@@ -37,7 +37,7 @@ abstract class BaseEntity
 
     /**
      * set property
-     * 
+     *
      * @param string $name
      * @param mixed $value
      * @return void
@@ -46,7 +46,7 @@ abstract class BaseEntity
 
     /**
      * isset data
-     * 
+     *
      * @param string $name
      * @return bool
      */
@@ -54,7 +54,7 @@ abstract class BaseEntity
 
     /**
      * unset data
-     * 
+     *
      * @param string $name
      * @return void
      */
@@ -62,7 +62,7 @@ abstract class BaseEntity
 
     /**
      * flush data
-     * 
+     *
      * @return void
      */
     public function flush(): void
@@ -76,7 +76,7 @@ abstract class BaseEntity
 
     /**
      * get all properties
-     * 
+     *
      * @return array<string, mixed>
      */
     public function all(): array
@@ -101,7 +101,7 @@ abstract class BaseEntity
 
     /**
      * to array
-     * 
+     *
      * @return array<string, mixed>
      */
     public function toArray(): array
@@ -111,7 +111,7 @@ abstract class BaseEntity
 
     /**
      * get only properties with keys
-     * 
+     *
      * @param string|array<string> ...$keys
      * @return array<string, mixed>
      */
@@ -126,7 +126,7 @@ abstract class BaseEntity
 
     /**
      * get except properties with keys
-     * 
+     *
      * @param string|array<string> ...$keys
      * @return array<string, mixed>
      */
@@ -145,7 +145,7 @@ abstract class BaseEntity
 
     /**
      * get property as nullable string
-     * 
+     *
      * @param string $name
      * @return string|null
      */
@@ -158,7 +158,7 @@ abstract class BaseEntity
 
     /**
      * get property as string
-     * 
+     *
      * @param string $name
      * @return string
      */
@@ -173,7 +173,7 @@ abstract class BaseEntity
 
     /**
      * get property as nullable int
-     * 
+     *
      * @param string $name
      * @return int|null
      */
@@ -186,7 +186,7 @@ abstract class BaseEntity
 
     /**
      * get property as int
-     * 
+     *
      * @param string $name
      * @return int
      */
@@ -201,7 +201,7 @@ abstract class BaseEntity
 
     /**
      * get property as nullable float
-     * 
+     *
      * @param string $name
      * @return float|null
      */
@@ -214,7 +214,7 @@ abstract class BaseEntity
 
     /**
      * get property as float
-     * 
+     *
      * @param string $name
      * @return float
      */
@@ -229,7 +229,7 @@ abstract class BaseEntity
 
     /**
      * get property as nullable bool
-     * 
+     *
      * @param string $name
      * @return bool|null
      */
@@ -244,7 +244,7 @@ abstract class BaseEntity
 
     /**
      * get property as bool
-     * 
+     *
      * @param string $name
      * @return bool
      */
@@ -259,7 +259,7 @@ abstract class BaseEntity
 
     /**
      * get property as nullable array
-     * 
+     *
      * @param string $name
      * @return array|null
      */
@@ -272,7 +272,7 @@ abstract class BaseEntity
 
     /**
      * get property as array
-     * 
+     *
      * @param string $name
      * @return array
      */
@@ -287,7 +287,7 @@ abstract class BaseEntity
 
     /**
      * get property as nullable object
-     * 
+     *
      * @param string $name
      * @return object|null
      */
@@ -302,7 +302,7 @@ abstract class BaseEntity
 
     /**
      * get property as object
-     * 
+     *
      * @param string $name
      * @return object
      */
@@ -317,7 +317,7 @@ abstract class BaseEntity
 
     /**
      * get property as nullable enum
-     * 
+     *
      * @param string $name
      * @param string $enumClass
      * @return \UnitEnum|null
@@ -335,7 +335,7 @@ abstract class BaseEntity
 
     /**
      * get property as enum
-     * 
+     *
      * @param string $name
      * @param string $enumClass
      * @return \UnitEnum
@@ -355,7 +355,7 @@ abstract class BaseEntity
 
     /**
      * throw required exception
-     * 
+     *
      * @param string $key
      * @return void
      */
@@ -366,7 +366,7 @@ abstract class BaseEntity
 
     /**
      * merge keys
-     * 
+     *
      * @param string|array<string> ...$args
      * @return array<string>
      */

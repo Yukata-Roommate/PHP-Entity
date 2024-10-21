@@ -6,14 +6,14 @@ use YukataRm\Entity\BaseEntity;
 
 /**
  * Object Entity
- * 
+ *
  * @package YukataRm\Entity
  */
 class ObjectEntity extends BaseEntity
 {
     /**
      * get property
-     * 
+     *
      * @param string $name
      * @return mixed
      */
@@ -24,7 +24,7 @@ class ObjectEntity extends BaseEntity
 
     /**
      * set property
-     * 
+     *
      * @param string $name
      * @param mixed $value
      * @return void
@@ -38,7 +38,7 @@ class ObjectEntity extends BaseEntity
 
     /**
      * isset data
-     * 
+     *
      * @param string $name
      * @return bool
      */
@@ -49,7 +49,7 @@ class ObjectEntity extends BaseEntity
 
     /**
      * unset data
-     * 
+     *
      * @param string $name
      * @return void
      */
